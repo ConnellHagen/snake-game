@@ -22,7 +22,8 @@ function setup() {
   menuButtons = [
     new Button(HEIGHT/5, HEIGHT/2, 3 * HEIGHT/5, HEIGHT/6, color(255), color(255,255,0), 'Start', resetGame)
   ];
-  createCanvas(WIDTH, HEIGHT);
+  var canvas = createCanvas(WIDTH, HEIGHT);
+  canvas.parent('display-game');
 }
 
 function draw() {
