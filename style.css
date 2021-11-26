@@ -14,6 +14,6 @@ div{
   flex-flow: row nowrap;
   margin: 0;
   padding: 0;
-  outline: 1px solid #AAAAAA;
+  outline: 5px solid #AAAAAA;
   justify-content: center;
 }
