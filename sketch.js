@@ -7,6 +7,8 @@ var snakeSquares;
 var dotSquare;
 var menuButtons;
 var lossButtons;
+var colors;
+var currentColor;
 
 function setup() {
   noStroke();
@@ -16,6 +18,13 @@ function setup() {
   HEIGHT = Math.floor(windowHeight/30) * 30;
   currentDirection = "right";
   currentScene = "menu";
+  colors = [
+    color(0, 255, 0),
+    color(255, 0, 0),
+    color(255, 255, 0),
+    color( 0, 0, 255)
+  ];
+  currentColor = colors[0];
   lossButtons = [
     new Button(HEIGHT/5, HEIGHT/2 + HEIGHT/8, 3 * HEIGHT/5, HEIGHT/6, color(255), color(255,255,0), 'Restart', resetGame)
   ];
@@ -51,20 +60,28 @@ function keyPressed() {
   switch(keyCode){
       
     case (LEFT_ARROW):
-      if(currentDirection !== "right")
+      if(currentDirection !== "right"){
         currentDirection = "left";
+        nextColor();
+      }
       break;
     case (UP_ARROW):
-      if(currentDirection !== "down")
+      if(currentDirection !== "down"){
         currentDirection = "up";
+        nextColor();
+      }
       break;
     case (RIGHT_ARROW):
-      if(currentDirection !== "left")
+      if(currentDirection !== "left"){
         currentDirection = "right";
+        nextColor();
+      }
       break;
     case (DOWN_ARROW):
-      if(currentDirection !== "up")
+      if(currentDirection !== "up"){
         currentDirection = "down";
+        nextColor();
+      }
       break;
       
   }
@@ -78,7 +95,7 @@ function drawBackground(){
 function drawSnake(){
   for(let i=0; i<snakeSquares.length; i++){
     push();
-    fill(0,255,0);
+    fill(currentColor);
     square(squareWidth * snakeSquares[i][0], squareWidth * snakeSquares[i][1], squareWidth);
     pop();
   }
@@ -237,7 +254,9 @@ class Button{
     this.isPressed = false;
   }
 }
-
+function nextColor(){
+  currentColor = colors[floor(random(0,4))];
+}
 function mousePressed(){
   switch(currentScene){
     case "loss":
